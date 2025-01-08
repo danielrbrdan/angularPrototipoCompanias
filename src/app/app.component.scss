@@ -1,0 +1,36 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.full-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.row {
+  flex-shrink: 0;
+}
+
+.row.flex-grow-1 {
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.col-sm-2 {
+  max-width: 20%;
+  min-width: 150px;
+}
+
+.router-container {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+}
+
+

@@ -1,0 +1,21 @@
+<div class="container-fluid w-100 p-0 m-0 full-page">
+    <div class="row" *ngIf="authService.isLoggedIn">
+      <div class="col">
+        <app-nav-bar></app-nav-bar>
+      </div>
+    </div>
+    <div class="row flex-grow-1">
+      <div class="col-sm-1" *ngIf="authService.isLoggedIn">
+        <app-side-bar></app-side-bar>
+      </div>
+      <div class="col router-container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
+  

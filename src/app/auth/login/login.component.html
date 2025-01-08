@@ -1,0 +1,31 @@
+<app-card class="row mb-4 form-group" [title]="'Login'">
+  <form [formGroup]="formLogin">
+    <div class="row">
+      <div class="col">
+        <app-input label="username" formControlName="username" />
+      </div>
+
+      <div class="col">
+        <app-input label="password" formControlName="password" />
+      </div>
+    </div>
+
+    <app-button (click)="login()" type="submit" class="btn-primary m-2"
+      >Logar</app-button
+    >
+  </form>
+</app-card>
+
+<app-card class="row" [title]="'Register'">
+  <form [formGroup]="formRegister">
+    <div class="row">
+      <div class="col">
+        <app-input label="username" formControlName="username" />
+      </div>
+      <div class="col">
+        <app-input label="password" formControlName="password" />
+      </div>
+    </div>
+    <app-button (onClick)="register()">Registrar usuario</app-button>
+  </form>
+</app-card>

@@ -1,0 +1,18 @@
+<label for="inputField-{{ label }}" *ngIf="label">{{ label }}</label>
+<input
+  id="inputField-{{ label }}"
+  class="form-control"
+  [type]="type"
+  [placeholder]="placeholder"
+  [disabled]="disabled"
+  [required]="required"
+  (input)="onInputChange($event)"
+  [value]="control?.value"
+/>
+
+<div
+  *ngIf="control && control.errors && (control.dirty || control.touched)"
+  class="text-danger"
+>
+  <small *ngFor="let error of getErrors()">{{ error }}</small>
+</div>

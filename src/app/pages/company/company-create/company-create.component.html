@@ -1,0 +1,92 @@
+<app-button (onClick)="moveToPreviousPage()">Voltar</app-button>
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col">
+      <app-input
+        label="Nome"
+        formControlName="nome"
+        [control]="form.get('nome')"
+      />
+    </div>
+    <div class="col">
+      <app-input
+        label="CNPJ"
+        formControlName="cnpj"
+        [control]="form.get('cnpj')"
+      />
+    </div>
+  </div>
+
+  <!-- Grupo Endereco -->
+  <div formGroupName="endereco">
+    <div class="row">
+      <div class="col">
+        <app-input
+          label="Logradouro"
+          formControlName="logradouro"
+          [control]="form.get('endereco.logradouro')"
+        />
+      </div>
+      <div class="col">
+        <app-input
+          label="Número"
+          formControlName="numero"
+          [control]="form.get('endereco.numero')"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <app-input
+          label="Bairro"
+          formControlName="bairro"
+          [control]="form.get('endereco.bairro')"
+        />
+      </div>
+      <div class="col">
+        <app-input
+          label="Cidade"
+          formControlName="cidade"
+          [control]="form.get('endereco.cidade')"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <app-input
+          label="Estado"
+          formControlName="estado"
+          [control]="form.get('endereco.estado')"
+        />
+      </div>
+      <div class="col">
+        <app-input
+          label="CEP"
+          formControlName="cep"
+          [control]="form.get('endereco.cep')"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <app-input
+        label="Telefone"
+        formControlName="telefone"
+        [control]="form.get('telefone')"
+      />
+    </div>
+    <div class="col">
+      <app-input
+        label="Email"
+        formControlName="email"
+        [control]="form.get('email')"
+      />
+    </div>
+  </div>
+</form>
+
+<app-button (onClick)="createOrUpdate()" id="submit">
+  {{ this.idEdit ? "Atualizar" : "Adicionar" }}
+</app-button>

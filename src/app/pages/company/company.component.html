@@ -1,0 +1,20 @@
+<app-button (onClick)="moveToCreatePage()">Adicionar</app-button>
+
+<app-table [data]="rows">
+  <app-column [field]="'id'"> </app-column>
+  <app-column [field]="'nome'"> </app-column>
+  <app-column [field]="'cnpj'"> </app-column>
+  <app-column [field]="'endereco'"> </app-column>
+  <app-column [field]="'telefone'"> </app-column>
+  <app-column [field]="'email'"> </app-column>
+  <app-column [field]="'editar'">
+    <ng-template #actionsTemplate let-row>
+      <button class="btn btn-primary" (click)="moveToEdit(row.id)">
+        Editar
+      </button>
+      <button class="btn btn-primary" (click)="deleteById(row.id)">
+        Deletar
+      </button>
+    </ng-template>
+  </app-column>
+</app-table>
