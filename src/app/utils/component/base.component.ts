@@ -130,7 +130,6 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
       if (control instanceof FormGroup || control instanceof FormArray) {
         this.touchAllControls(control);
       } else {
-        control?.markAsDirty();
         control?.markAsTouched();
       }
     });
