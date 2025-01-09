@@ -38,7 +38,7 @@ export class CompanyCreateComponent extends BaseComponent<ICompany> {
       name: [null, [Validators.required]],
       cnpj: [null, [Validators.required, Validators.pattern(cnpjRegex)]],
       phone: [null, [Validators.required]],
-      email: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
       address: this.formBuilder.group({
         id: [null],
         street: [null, [Validators.required]],
