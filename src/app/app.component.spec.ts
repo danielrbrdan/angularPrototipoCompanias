@@ -20,7 +20,7 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        AppComponent, 
+        AppComponent,
         CommonModule,
         NavBarComponent,
         FooterComponent,

@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LocalStorageService } from '../../utils/service/localStorage.service';
 import { IUser } from '../interface/user.interface';
@@ -26,14 +29,8 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
-      ],
-      providers: [
-        AuthService,
-        LocalStorageService,
-      ]
+      imports: [HttpClientTestingModule, RouterTestingModule],
+      providers: [AuthService, LocalStorageService],
     });
 
     service = TestBed.inject(AuthService);
@@ -54,10 +51,19 @@ describe('AuthService', () => {
     spyOn(localStorageService, 'setItem').and.callThrough();
     spyOn(router, 'navigate').and.stub();
 
-    service.login(mockUser).subscribe(response => {
-      expect(localStorageService.setItem).toHaveBeenCalledWith('user', btoa(JSON.stringify(mockUser)));
-      expect(localStorageService.setItem).toHaveBeenCalledWith('token', btoa(JSON.stringify(mockLoginResponse.token)));
-      expect(localStorageService.setItem).toHaveBeenCalledWith('expiresIn', btoa(JSON.stringify(mockLoginResponse.expiresIn)));
+    service.login(mockUser).subscribe((response) => {
+      expect(localStorageService.setItem).toHaveBeenCalledWith(
+        'user',
+        btoa(JSON.stringify(mockUser)),
+      );
+      expect(localStorageService.setItem).toHaveBeenCalledWith(
+        'token',
+        btoa(JSON.stringify(mockLoginResponse.token)),
+      );
+      expect(localStorageService.setItem).toHaveBeenCalledWith(
+        'expiresIn',
+        btoa(JSON.stringify(mockLoginResponse.expiresIn)),
+      );
       expect(router.navigate).toHaveBeenCalledWith(['']);
     });
 
@@ -69,7 +75,7 @@ describe('AuthService', () => {
   it('should create a new user', () => {
     spyOn(localStorageService, 'setItem').and.callThrough();
 
-    service.create(mockUser).subscribe(response => {
+    service.create(mockUser).subscribe((response) => {
       expect(response).toBeTruthy();
     });
 
@@ -98,7 +104,9 @@ describe('AuthService', () => {
   });
 
   it('should return token if available', () => {
-    spyOn(localStorageService, 'getItem').and.returnValue(btoa(JSON.stringify('token123')));
+    spyOn(localStorageService, 'getItem').and.returnValue(
+      btoa(JSON.stringify('token123')),
+    );
 
     const token = service.token;
 

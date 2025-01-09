@@ -1,31 +1,79 @@
-<app-card class="row mb-4 form-group" [title]="'Login'">
-  <form [formGroup]="formLogin">
-    <div class="row">
-      <div class="col">
-        <app-input label="username" formControlName="username" />
+<div class="wrapper">
+  <div id="formContent">
+    <span *ngIf="isRegister()">
+      <div class="first m-4">
+        <h1>Registrar</h1>
       </div>
+      <form [formGroup]="formRegister">
+        <input
+          type="text"
+          id="login"
+          class="second"
+          name="login"
+          placeholder="Usuario"
+          formControlName="username"
+        />
+        <input
+          type="text"
+          id="password"
+          class="third"
+          name="login"
+          placeholder="Senha"
+          formControlName="password"
+        />
+        <input
+          type="submit"
+          class="fourth m-3"
+          value="Cadastrar"
+          (click)="register()"
+        />
+      </form>
+    </span>
 
-      <div class="col">
-        <app-input label="password" formControlName="password" />
+    <span *ngIf="isLogin()">
+      <div class="first m-4">
+        <h1>Login</h1>
       </div>
+      <form [formGroup]="formLogin">
+        <input
+          type="text"
+          id="login"
+          class="second"
+          name="login"
+          placeholder="Usuario"
+          formControlName="username"
+        />
+        <input
+          type="text"
+          id="password"
+          class="third"
+          name="login"
+          placeholder="Senha"
+          formControlName="password"
+        />
+        <input
+          type="submit"
+          class="fourth m-3"
+          value="Entrar"
+          (click)="login()"
+        />
+      </form>
+    </span>
+
+    <div id="formFooter">
+      <a
+        *ngIf="isLogin()"
+        class="underlineHover cursor-pointer"
+        (click)="step = 'REGISTER'"
+        >Registrar</a
+      >
+
+      <a
+        *ngIf="isRegister()"
+        class="underlineHover cursor-pointer"
+        (click)="step = 'LOGIN'"
+        >Logar</a
+      >
     </div>
-
-    <app-button (click)="login()" type="submit" class="btn-primary m-2"
-      >Logar</app-button
-    >
-  </form>
-</app-card>
-
-<app-card class="row" [title]="'Register'">
-  <form [formGroup]="formRegister">
-    <div class="row">
-      <div class="col">
-        <app-input label="username" formControlName="username" />
-      </div>
-      <div class="col">
-        <app-input label="password" formControlName="password" />
-      </div>
-    </div>
-    <app-button (onClick)="register()">Registrar usuario</app-button>
-  </form>
-</app-card>
+  </div>
+</div>

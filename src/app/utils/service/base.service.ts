@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export abstract class BaseService<T extends { id: number }> {
   constructor(
     protected readonly url: string,
-    protected readonly http: HttpClient
+    protected readonly http: HttpClient,
   ) {}
 
   public findAll(): Observable<T[]> {

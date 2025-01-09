@@ -27,14 +27,14 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
 
   constructor(
     protected readonly _injector: Injector,
-    protected readonly service: BaseService<T>
+    protected readonly service: BaseService<T>,
   ) {
     this.router = this._injector.get(Router);
     this.activatedRoute = this._injector.get(ActivatedRoute);
     this.location = this._injector.get(Location);
     this.toastrService = this._injector.get(ToastrService);
     this.confirmationDialogService = this._injector.get(
-      ConfirmationDialogService
+      ConfirmationDialogService,
     );
   }
 
@@ -152,7 +152,7 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
         if (!confirmed) {
           return;
         }
-        
+
         this.service.deleteById(id).subscribe({
           next: (result) => {
             this.findAll();

@@ -22,7 +22,7 @@ export class CompanyCreateComponent extends BaseComponent<ICompany> {
   constructor(
     private readonly formBuilder: FormBuilder,
     protected injector: Injector,
-    private readonly companyService: CompanyService
+    private readonly companyService: CompanyService,
   ) {
     super(injector, companyService);
   }

@@ -26,7 +26,10 @@ import { BaseComponent } from '../../utils/component/base.component';
   templateUrl: './company.component.html',
   styleUrl: './company.component.scss',
 })
-export class CompanyComponent extends BaseComponent<ICompany> implements OnInit {
+export class CompanyComponent
+  extends BaseComponent<ICompany>
+  implements OnInit
+{
   constructor(
     protected injector: Injector,
     protected readonly companyService: CompanyService,

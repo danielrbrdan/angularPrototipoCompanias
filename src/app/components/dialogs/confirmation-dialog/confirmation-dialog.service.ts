@@ -13,7 +13,7 @@ export class ConfirmationDialogService {
     message: string,
     btnOkText: string = 'OK',
     btnCancelText: string = 'Cancel',
-    dialogSize: 'sm' | 'lg' = 'sm'
+    dialogSize: 'sm' | 'lg' = 'sm',
   ): Promise<boolean> {
     const modalRef = this.modalService.open(ConfirmationDialogComponent, {
       size: dialogSize,

@@ -14,7 +14,7 @@ export class AuthService {
   constructor(
     private readonly httpClient: HttpClient,
     private readonly router: Router,
-    private readonly localStorageService: LocalStorageService
+    private readonly localStorageService: LocalStorageService,
   ) {}
 
   login(user: IUser): Observable<LoginResponse> {
@@ -28,12 +28,12 @@ export class AuthService {
           keys.forEach((key) => {
             this.localStorageService.setItem(
               key,
-              btoa(JSON.stringify(response[key]))
+              btoa(JSON.stringify(response[key])),
             );
           });
 
           this.router.navigate(['']);
-        })
+        }),
       );
   }
 
@@ -54,9 +54,7 @@ export class AuthService {
 
   get token(): string {
     return this.localStorageService.getItem('token')
-      ? JSON.parse(
-          atob(this.localStorageService.getItem('token') as string)
-        )
+      ? JSON.parse(atob(this.localStorageService.getItem('token') as string))
       : null;
   }
 

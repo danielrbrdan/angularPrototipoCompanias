@@ -6,7 +6,10 @@ import { AuthService } from '../service/auth.service';
   providedIn: 'root',
 })
 export class notAuthenticatedGuard implements CanActivate {
-  constructor(private readonly authService: AuthService, private readonly router: Router) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router,
+  ) {}
 
   canActivate() {
     if (this.authService.isLoggedIn) {

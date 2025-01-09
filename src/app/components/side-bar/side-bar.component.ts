@@ -9,7 +9,7 @@ import { ButtonComponent } from '../button/button.component';
   styleUrl: './side-bar.component.scss',
 })
 export class SideBarComponent {
-  constructor(public readonly router: Router){};
+  constructor(public readonly router: Router) {}
 
   moveToPage(url: string) {
     this.router.navigate([url]);

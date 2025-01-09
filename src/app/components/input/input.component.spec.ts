@@ -51,7 +51,7 @@ describe('InputComponent', () => {
   it('should call registerOnChange and registerOnTouched', () => {
     const onChangeFn = jasmine.createSpy();
     const onTouchedFn = jasmine.createSpy();
-    
+
     component.registerOnChange(onChangeFn);
     component.registerOnTouched(onTouchedFn);
 

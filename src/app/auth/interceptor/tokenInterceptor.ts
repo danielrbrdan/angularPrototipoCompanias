@@ -14,7 +14,7 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
   constructor(private readonly authService: AuthService) {}
   intercept(
     req: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     const token = this.authService.token;
     let authReq: HttpRequest<any> | null = null;
@@ -34,7 +34,7 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
           return throwError(() => error.error.message);
         }
         return throwError(() => new Error(error.message));
-      })
+      }),
     );
   }
 }
