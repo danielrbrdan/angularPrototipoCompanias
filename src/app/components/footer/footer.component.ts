@@ -9,7 +9,7 @@ import { ChangeDetectorRef, Component, NgZone, OnDestroy } from '@angular/core';
 })
 export class FooterComponent implements OnDestroy {
   date: Date = new Date();
-  interval!: NodeJS.Timeout;
+  interval!:  ReturnType<typeof setInterval>;
 
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,

@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmationDialogService } from '../../components/dialogs/confirmation-dialog/confirmation-dialog.service';
 
 class MockCompanyService {
   findAll() {
@@ -22,6 +23,12 @@ class MockActivatedRoute {
   snapshot = {
     params: { id: 1 },
   };
+}
+
+class MockConfirmationDialogService {
+  confirm() {
+    return of(true);
+  }
 }
 
 class MockToastrService {
@@ -50,6 +57,10 @@ describe('CompanyComponent', () => {
         { provide: CompanyService, useClass: MockCompanyService },
         { provide: ActivatedRoute, useClass: MockActivatedRoute },
         { provide: ToastrService, useClass: MockToastrService },
+        {
+          provide: ConfirmationDialogService,
+          useClass: MockConfirmationDialogService,
+        },
       ],
     }).compileComponents();
   });

@@ -6,12 +6,18 @@ import { CompanyCreateComponent } from '../company-create/company-create.compone
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmationDialogService } from '../../../components/dialogs/confirmation-dialog/confirmation-dialog.service';
 
 class MockToastrService {
   success() {}
   error() {}
   info() {}
   warning() {}
+}
+class MockConfirmationDialogService {
+  confirm() {
+    return of(true);
+  }
 }
 
 describe('CompanyUpdateComponent', () => {
@@ -32,6 +38,10 @@ describe('CompanyUpdateComponent', () => {
         provideHttpClientTesting(),
         { provide: ActivatedRoute, useValue: activatedRouteMock },
         { provide: ToastrService, useClass: MockToastrService },
+        {
+          provide: ConfirmationDialogService,
+          useClass: MockConfirmationDialogService,
+        },
       ],
     }).compileComponents();
   });

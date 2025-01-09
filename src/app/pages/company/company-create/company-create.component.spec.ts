@@ -8,6 +8,7 @@ import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmationDialogService } from '../../../components/dialogs/confirmation-dialog/confirmation-dialog.service';
 
 class MockCompanyService {
   create() {
@@ -26,6 +27,11 @@ class MockToastrService {
   error() {}
   info() {}
   warning() {}
+}
+class MockConfirmationDialogService {
+  confirm() {
+    return of(true);
+  }
 }
 
 describe('CompanyCreateComponent', () => {
@@ -46,6 +52,10 @@ describe('CompanyCreateComponent', () => {
         { provide: CompanyService, useClass: MockCompanyService },
         { provide: ActivatedRoute, useClass: MockActivatedRoute },
         { provide: ToastrService, useClass: MockToastrService },
+        {
+          provide: ConfirmationDialogService,
+          useClass: MockConfirmationDialogService,
+        },
       ],
     }).compileComponents();
   });

@@ -6,11 +6,17 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { InputComponent } from '../../components/input/input.component';
 import { CardComponent } from '../../components/card/card.component';
 import {
-  HttpClientTestingModule,
-  HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+
+class MockToastrService {
+  success() {}
+  error() {}
+  info() {}
+  warning() {}
+}
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -26,7 +32,12 @@ describe('LoginComponent', () => {
         InputComponent,
         CardComponent,
       ],
-      providers: [FormBuilder, provideHttpClient(), provideHttpClientTesting()],
+      providers: [
+        FormBuilder,
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: ToastrService, useClass: MockToastrService },
+      ],
     }).compileComponents();
   });
 

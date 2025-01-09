@@ -70,7 +70,7 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
     return window.location.href;
   }
 
-  protected moveToCreatePage() {
+  moveToCreatePage() {
     this.router.navigate(['create'], { relativeTo: this.activatedRoute });
   }
 
@@ -78,7 +78,7 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
     this.router.navigate([`${this.router.url.split('/')[1]}/edit/${id}`]);
   }
 
-  protected moveToPreviousPage() {
+  moveToPreviousPage() {
     const navigate = () => {
       this.router.navigate([`${this.router.url.split('/')[1]}`]);
     };
