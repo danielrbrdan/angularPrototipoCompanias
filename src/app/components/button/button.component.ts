@@ -11,7 +11,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
   @Output() onClick = new EventEmitter<any>();
 
-  @Input() class = 'btn-primary';
+  @Input() class = 'btn-dark';
 
   _onClick(event: MouseEvent) {
     this.onClick.emit(event);

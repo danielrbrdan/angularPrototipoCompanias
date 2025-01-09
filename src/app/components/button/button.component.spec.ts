@@ -44,8 +44,8 @@ describe('ButtonComponent', () => {
     expect(button.nativeElement.classList).toContain('btn-success');
   });
 
-  it('should default to "btn-primary" class when no input is given', () => {
+  it('should default to "btn-dark" class when no input is given', () => {
     const button = fixture.debugElement.query(By.css('button'));
-    expect(button.nativeElement.classList).toContain('btn-primary');
+    expect(button.nativeElement.classList).toContain('btn-dark');
   });
 });

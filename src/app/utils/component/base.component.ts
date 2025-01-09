@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogService } from '../../components/dialogs/confirmation-dialog/confirmation-dialog.service';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-base',
@@ -27,14 +28,14 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
 
   constructor(
     protected readonly _injector: Injector,
-    protected readonly service: BaseService<T>,
+    protected readonly service: BaseService<T>
   ) {
     this.router = this._injector.get(Router);
     this.activatedRoute = this._injector.get(ActivatedRoute);
     this.location = this._injector.get(Location);
     this.toastrService = this._injector.get(ToastrService);
     this.confirmationDialogService = this._injector.get(
-      ConfirmationDialogService,
+      ConfirmationDialogService
     );
   }
 
@@ -78,7 +79,23 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
   }
 
   protected moveToPreviousPage() {
-    this.router.navigate([`${this.router.url.split('/')[1]}`]);
+    const navigate = () => {
+      this.router.navigate([`${this.router.url.split('/')[1]}`]);
+    };
+
+    if (this.form.dirty) {
+      this.confirmationDialogService
+        .confirm('Sair sem salvar?', 'Você ira sair sem salvar o registro')
+        .then((confirmed) => {
+          if (!confirmed) {
+            return;
+          }
+
+          navigate();
+        });
+    } else {
+      navigate();
+    }
   }
 
   findAll() {
@@ -117,15 +134,19 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
   }
 
   update(value: T) {
-    this.service.update(value).subscribe({
-      next: (result) => {
-        this.editActions();
-        this.sendToastrSucessMessage(['Atualizado com sucesso!']);
-      },
-      error: (error) => {
-        this.sendToastrErrorMessage(error);
-      },
-    });
+    this.service
+      .update(value)
+      .pipe(debounceTime(500))
+      .subscribe({
+        next: (result) => {
+          this.editActions();
+          this.sendToastrSucessMessage(['Atualizado com sucesso!']);
+          this.form.markAsPristine();
+        },
+        error: (error) => {
+          this.sendToastrErrorMessage(error);
+        },
+      });
   }
 
   getFormValue() {
@@ -133,16 +154,20 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
   }
 
   create(value: T) {
-    this.service.create(value).subscribe({
-      next: (result) => {
-        this.form.reset();
-        this.moveToEdit(result.id);
-        this.sendToastrSucessMessage(['Criado com sucesso!']);
-      },
-      error: (error) => {
-        this.sendToastrErrorMessage(error);
-      },
-    });
+    this.service
+      .create(value)
+      .pipe(debounceTime(500))
+      .subscribe({
+        next: (result) => {
+          this.form.reset();
+          this.moveToEdit(result.id);
+          this.form.markAsPristine();
+          this.sendToastrSucessMessage(['Criado com sucesso!']);
+        },
+        error: (error) => {
+          this.sendToastrErrorMessage(error);
+        },
+      });
   }
 
   deleteById(id: number) {

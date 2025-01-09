@@ -1,6 +1,12 @@
-<app-button (onClick)="moveToCreatePage()">Adicionar</app-button>
+<div class="row justify-content-end">
+  <div class="col-auto">
+    <app-button (onClick)="moveToCreatePage()" class="btn-dark mb-3"
+      ><i class="bi bi-plus-circle-dotted"></i
+    ></app-button>
+  </div>
+</div>
 
-<app-table [data]="rows">
+<app-table *ngIf="rows && rows.length > 0" [data]="rows">
   <app-column header="Código" [field]="'id'"> </app-column>
   <app-column header="Nome" [field]="'name'"> </app-column>
   <app-column header="CNPJ" [field]="'cnpj'"> </app-column>
@@ -17,3 +23,7 @@
     </ng-template>
   </app-column>
 </app-table>
+
+<div *ngIf="!rows || rows.length === 0" class="alert alert-dark d-flex justify-content-center text-center">
+  Nenhum registro encontrado.
+</div>

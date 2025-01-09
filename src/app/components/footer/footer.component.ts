@@ -1,33 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectorRef, Component, NgZone, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })
-export class FooterComponent implements OnInit {
-  currentTime: string = '';
-  currentDate: string = '';
+export class FooterComponent implements OnDestroy {
+  date: Date = new Date();
+  interval!: NodeJS.Timeout;
 
-  ngOnInit(): void {
-    this.updateTime();
+  constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly zone: NgZone
+  ) {
+    this.zone.runOutsideAngular(() => {
+      this.interval = setInterval(() => {
+        this.date = new Date();
+        this.changeDetectorRef.detectChanges();
+      }, 1000);
+    });
   }
 
-  updateTime(): void {
-    const now = new Date();
-
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-
-    const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const year = now.getFullYear();
-
-    this.currentTime = `${hours}:${minutes}`;
-    this.currentDate = `${day}/${month}/${year}`;
-
-
-    setTimeout(() => this.updateTime, 1000)
+  ngOnDestroy() {
+    clearInterval(this.interval);
   }
 }

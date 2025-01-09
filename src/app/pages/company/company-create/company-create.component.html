@@ -1,4 +1,7 @@
-<app-button (onClick)="moveToPreviousPage()">Voltar</app-button>
+<app-button (onClick)="moveToPreviousPage()" class="btn-dark my-4"
+  ><i class="bi bi-skip-backward"></i
+></app-button>
+
 <form [formGroup]="form">
   <div class="row">
     <div class="col">
@@ -86,6 +89,10 @@
   </div>
 </form>
 
-<app-button (onClick)="createOrUpdate()" id="submit">
-  {{ this.idEdit ? "Atualizar" : "Adicionar" }}
-</app-button>
+<div class="row justify-content-end">
+  <div class="col-auto">
+    <app-button (onClick)="createOrUpdate()" id="submit" class="btn-dark my-4">
+      {{ this.idEdit ? "Atualizar" : "Adicionar" }}
+    </app-button>
+  </div>
+</div>
