@@ -1,6 +1,6 @@
   <p align="center">Sistema de cadastro de Companias</p>
 
-## Description
+## Descrição
 
 Este é o frontend da aplicação, desenvolvido em Angular, para consumo da API RESTful criada no backend. Ele permite login e cadastro de usuario e o gerenciamento de empresas com funcionalidades de cadastro, edição, exclusão e visualização.
 
