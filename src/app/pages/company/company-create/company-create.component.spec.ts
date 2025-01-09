@@ -103,7 +103,7 @@ describe('CompanyCreateComponent', () => {
     form.get('name')?.setValue('Company Name');
     form.get('cnpj')?.setValue('12345678000195');
     form.get('address.street')?.setValue('Street');
-    form.get('address.numero')?.setValue('123');
+    form.get('address.number')?.setValue('123');
     form.get('address.neighborhood')?.setValue('Bairro');
     form.get('address.city')?.setValue('City');
     form.get('address.state')?.setValue('State');

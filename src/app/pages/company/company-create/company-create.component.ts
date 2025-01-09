@@ -22,7 +22,7 @@ export class CompanyCreateComponent extends BaseComponent<ICompany> {
   constructor(
     private readonly formBuilder: FormBuilder,
     protected injector: Injector,
-    private readonly companyService: CompanyService,
+    private readonly companyService: CompanyService
   ) {
     super(injector, companyService);
   }
@@ -37,17 +37,17 @@ export class CompanyCreateComponent extends BaseComponent<ICompany> {
       id: [null],
       name: [null, [Validators.required]],
       cnpj: [null, [Validators.required, Validators.pattern(cnpjRegex)]],
+      phone: [null, [Validators.required]],
+      email: [null, [Validators.required]],
       address: this.formBuilder.group({
         id: [null],
         street: [null, [Validators.required]],
-        numero: [null, [Validators.required]],
+        number: [null, [Validators.required]],
         neighborhood: [null, [Validators.required]],
         city: [null, [Validators.required]],
         state: [null, [Validators.required]],
         zipCode: [null, [Validators.required, Validators.pattern(cepRegex)]],
       }),
-      phone: [null, [Validators.required]],
-      email: [null, [Validators.required]],
     });
   }
 }

@@ -2,7 +2,7 @@ import { Component, Injector, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { BaseService } from '../service/base.service';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogService } from '../../components/dialogs/confirmation-dialog/confirmation-dialog.service';
@@ -28,14 +28,14 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
 
   constructor(
     protected readonly _injector: Injector,
-    protected readonly service: BaseService<T>,
+    protected readonly service: BaseService<T>
   ) {
     this.router = this._injector.get(Router);
     this.activatedRoute = this._injector.get(ActivatedRoute);
     this.location = this._injector.get(Location);
     this.toastrService = this._injector.get(ToastrService);
     this.confirmationDialogService = this._injector.get(
-      ConfirmationDialogService,
+      ConfirmationDialogService
     );
   }
 
@@ -113,7 +113,7 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
   }
 
   createOrUpdate() {
-    this.touchAllControls();
+    this.touchAllControls(this.form);
     if (!this.isFormValid()) return;
     const value = this.getFormValue();
 
@@ -124,11 +124,14 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
     }
   }
 
-  touchAllControls() {
-    Object.keys(this.form.controls).forEach((key) => {
-      const control = this.form.get(key);
-      if (control) {
-        control.markAsDirty();
+  touchAllControls(formGroup: FormGroup | FormArray): void {
+    Object.keys(formGroup.controls).forEach((key) => {
+      const control = formGroup.get(key);
+      if (control instanceof FormGroup || control instanceof FormArray) {
+        this.touchAllControls(control);
+      } else {
+        control?.markAsDirty();
+        control?.markAsTouched();
       }
     });
   }
