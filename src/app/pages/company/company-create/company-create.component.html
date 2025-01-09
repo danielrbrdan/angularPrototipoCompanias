@@ -12,7 +12,11 @@
       />
     </div>
     <div class="col">
-      label="CNPJ" formControlName="cnpj" [control]="form.get('cnpj')" />
+      <app-input
+        label="CNPJ"
+        formControlName="cnpj"
+        [control]="form.get('cnpj')"
+      />
     </div>
   </div>
 
@@ -29,6 +33,7 @@
         <app-input
           label="Número"
           formControlName="numero"
+          [type]="'number'"
           [control]="form.get('address.numero')"
         />
       </div>

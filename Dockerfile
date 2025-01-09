@@ -12,8 +12,6 @@ COPY --chown=node:node package.json package-lock.json ./
 
 RUN npm ci --quiet
 
-COPY --chown=node:node . .
-
 RUN mkdir -p /home/node/app/.angular && chown node:node /home/node/app/.angular
 
 EXPOSE 4200
