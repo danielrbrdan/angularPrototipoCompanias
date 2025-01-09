@@ -64,41 +64,41 @@ describe('CompanyCreateComponent', () => {
   it('should initialize the form with the correct structure', () => {
     const form = component.form;
     expect(form).toBeTruthy();
-    expect(form.contains('nome')).toBeTrue();
+    expect(form.contains('name')).toBeTrue();
     expect(form.contains('cnpj')).toBeTrue();
-    expect(form.contains('endereco')).toBeTrue();
-    expect(form.contains('telefone')).toBeTrue();
+    expect(form.contains('address')).toBeTrue();
+    expect(form.contains('phone')).toBeTrue();
     expect(form.contains('email')).toBeTrue();
   });
 
   it('should apply required validators to fields', () => {
     const form = component.form;
 
-    const nomeControl = form.get('nome');
-    nomeControl?.setValue('');
-    expect(nomeControl?.valid).toBeFalsy();
+    const nameControl = form.get('name');
+    nameControl?.setValue('');
+    expect(nameControl?.valid).toBeFalsy();
 
     const cnpjControl = form.get('cnpj');
     cnpjControl?.setValue('');
     expect(cnpjControl?.valid).toBeFalsy();
 
-    const enderecoControl = form.get('endereco.logradouro');
-    enderecoControl?.setValue('');
-    expect(enderecoControl?.valid).toBeFalsy();
+    const addressControl = form.get('address.street');
+    addressControl?.setValue('');
+    expect(addressControl?.valid).toBeFalsy();
   });
 
   it('should call the companyService create method when form is valid', () => {
     spyOn(companyService, 'create').and.callThrough();
     const form = component.form;
-    form.get('nome')?.setValue('Company Name');
+    form.get('name')?.setValue('Company Name');
     form.get('cnpj')?.setValue('12345678000195');
-    form.get('endereco.logradouro')?.setValue('Street');
-    form.get('endereco.numero')?.setValue('123');
-    form.get('endereco.bairro')?.setValue('Bairro');
-    form.get('endereco.cidade')?.setValue('City');
-    form.get('endereco.estado')?.setValue('State');
-    form.get('endereco.cep')?.setValue('12345678');
-    form.get('telefone')?.setValue('123456789');
+    form.get('address.street')?.setValue('Street');
+    form.get('address.numero')?.setValue('123');
+    form.get('address.neighborhood')?.setValue('Bairro');
+    form.get('address.city')?.setValue('City');
+    form.get('address.state')?.setValue('State');
+    form.get('address.zipCode')?.setValue('12345678');
+    form.get('phone')?.setValue('123456789');
     form.get('email')?.setValue('email@example.com');
     fixture.detectChanges();
 

@@ -1,8 +1,12 @@
-@use 'bootstrap/scss/bootstrap' as *;
-@import 'ngx-toastr/toastr';
+@use "bootstrap/scss/bootstrap" as *;
+@import "ngx-toastr/toastr";
 
 $default-primary-color: #1c2331;
 
 .bg-primary {
-  background-color: $default-primary-color !important; 
+  background-color: $default-primary-color !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

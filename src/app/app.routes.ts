@@ -18,11 +18,11 @@ export const routes: Routes = [
     component: LogoutComponent,
     canActivate: [authenticatedGuard],
   },
-  // {
-  //   path: '',
-  //   component: TestComponent,
-  //   canActivate: [authenticatedGuard],
-  // },
+  {
+    path: '',
+    redirectTo: '/company',
+    pathMatch: 'full',
+  },
   {
     path: 'company',
     canActivate: [authenticatedGuard],

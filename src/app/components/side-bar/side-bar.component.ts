@@ -4,7 +4,7 @@ import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-side-bar',
-  imports: [ButtonComponent],
+  imports: [],
   templateUrl: './side-bar.component.html',
   styleUrl: './side-bar.component.scss',
 })

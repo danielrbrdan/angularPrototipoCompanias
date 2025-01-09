@@ -1,8 +1,8 @@
 export interface ICompany {
   id: number;
-  nome: string;
+  name: string;
   cnpj: string;
-  endereco: string;
-  telefone: string;
+  address: string;
+  phone: string;
   email: string;
 }

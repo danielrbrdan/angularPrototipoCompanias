@@ -4,8 +4,8 @@
     <div class="col">
       <app-input
         label="Nome"
-        formControlName="nome"
-        [control]="form.get('nome')"
+        formControlName="name"
+        [control]="form.get('name')"
       />
     </div>
     <div class="col">
@@ -17,21 +17,20 @@
     </div>
   </div>
 
-  <!-- Grupo Endereco -->
-  <div formGroupName="endereco">
+  <div formGroupName="address">
     <div class="row">
       <div class="col">
         <app-input
           label="Logradouro"
-          formControlName="logradouro"
-          [control]="form.get('endereco.logradouro')"
+          formControlName="street"
+          [control]="form.get('address.street')"
         />
       </div>
       <div class="col">
         <app-input
           label="Número"
           formControlName="numero"
-          [control]="form.get('endereco.numero')"
+          [control]="form.get('address.numero')"
         />
       </div>
     </div>
@@ -39,15 +38,15 @@
       <div class="col">
         <app-input
           label="Bairro"
-          formControlName="bairro"
-          [control]="form.get('endereco.bairro')"
+          formControlName="neighborhood"
+          [control]="form.get('address.neighborhood')"
         />
       </div>
       <div class="col">
         <app-input
           label="Cidade"
-          formControlName="cidade"
-          [control]="form.get('endereco.cidade')"
+          formControlName="city"
+          [control]="form.get('address.city')"
         />
       </div>
     </div>
@@ -55,15 +54,15 @@
       <div class="col">
         <app-input
           label="Estado"
-          formControlName="estado"
-          [control]="form.get('endereco.estado')"
+          formControlName="state"
+          [control]="form.get('address.state')"
         />
       </div>
       <div class="col">
         <app-input
           label="CEP"
-          formControlName="cep"
-          [control]="form.get('endereco.cep')"
+          formControlName="zipCode"
+          [control]="form.get('address.zipCode')"
         />
       </div>
     </div>
@@ -73,8 +72,8 @@
     <div class="col">
       <app-input
         label="Telefone"
-        formControlName="telefone"
-        [control]="form.get('telefone')"
+        formControlName="phone"
+        [control]="form.get('phone')"
       />
     </div>
     <div class="col">

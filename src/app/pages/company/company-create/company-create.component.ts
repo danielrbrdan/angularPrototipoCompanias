@@ -35,17 +35,18 @@ export class CompanyCreateComponent extends BaseComponent<ICompany> {
   private setForm() {
     this.form = this.formBuilder.group({
       id: [null],
-      nome: [null, [Validators.required]],
+      name: [null, [Validators.required]],
       cnpj: [null, [Validators.required, Validators.pattern(cnpjRegex)]],
-      endereco: this.formBuilder.group({
-        logradouro: [null, [Validators.required]],
+      address: this.formBuilder.group({
+        id: [null],
+        street: [null, [Validators.required]],
         numero: [null, [Validators.required]],
-        bairro: [null, [Validators.required]],
-        cidade: [null, [Validators.required]],
-        estado: [null, [Validators.required]],
-        cep: [null, [Validators.required, Validators.pattern(cepRegex)]],
+        neighborhood: [null, [Validators.required]],
+        city: [null, [Validators.required]],
+        state: [null, [Validators.required]],
+        zipCode: [null, [Validators.required, Validators.pattern(cepRegex)]],
       }),
-      telefone: [null, [Validators.required]],
+      phone: [null, [Validators.required]],
       email: [null, [Validators.required]],
     });
   }

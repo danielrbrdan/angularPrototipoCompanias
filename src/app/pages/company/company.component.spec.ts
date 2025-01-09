@@ -73,7 +73,7 @@ describe('CompanyComponent', () => {
   });
 
   it('should populate rows with data', () => {
-    const mockData: ICompany[] = [{ id: 1, nome: 'Company 1', cnpj: '12345678000195' } as ICompany];
+    const mockData: ICompany[] = [{ id: 1, name: 'Company 1', cnpj: '12345678000195' } as ICompany];
     spyOn(companyService, 'findAll').and.returnValue(of(mockData));
     component.ngOnInit();
     expect(component.rows).toEqual(mockData);

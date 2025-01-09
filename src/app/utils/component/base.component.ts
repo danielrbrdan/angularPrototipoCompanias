@@ -5,6 +5,7 @@ import { BaseService } from '../service/base.service';
 import { FormGroup } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmationDialogService } from '../../components/dialogs/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-base',
@@ -18,6 +19,8 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
   protected activatedRoute!: ActivatedRoute;
   protected location!: Location;
   protected toastrService!: ToastrService;
+  protected confirmationDialogService: ConfirmationDialogService;
+
   rows?: T[];
   form!: FormGroup;
   data?: T;
@@ -30,6 +33,9 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
     this.activatedRoute = this._injector.get(ActivatedRoute);
     this.location = this._injector.get(Location);
     this.toastrService = this._injector.get(ToastrService);
+    this.confirmationDialogService = this._injector.get(
+      ConfirmationDialogService
+    );
   }
 
   ngOnInit(): void {
@@ -140,15 +146,23 @@ export class BaseComponent<T extends { id: number }> implements OnInit {
   }
 
   deleteById(id: number) {
-    this.service.deleteById(id).subscribe({
-      next: (result) => {
-        this.findAll();
-        this.sendToastrSucessMessage(['Deletado com sucesso!']);
-      },
-      error: (error) => {
-        this.sendToastrErrorMessage(error);
-      },
-    });
+    this.confirmationDialogService
+      .confirm('Deletando registro', 'Deseja realmente deletar o registro?')
+      .then((confirmed) => {
+        if (!confirmed) {
+          return;
+        }
+        
+        this.service.deleteById(id).subscribe({
+          next: (result) => {
+            this.findAll();
+            this.sendToastrSucessMessage(['Deletado com sucesso!']);
+          },
+          error: (error) => {
+            this.sendToastrErrorMessage(error);
+          },
+        });
+      });
   }
 
   sendToastrErrorMessage(error: string[]) {
