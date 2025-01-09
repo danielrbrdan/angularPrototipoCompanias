@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly authService: AuthService,
-    private readonly toastrService: ToastrService
+    private readonly toastrService: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -60,11 +60,11 @@ export class LoginComponent implements OnInit {
       next: () => {
         this.formRegister.reset();
         this.toastrService.success('Usuário cadastrado com sucesso!');
-        this.step = 'LOGIN'
+        this.step = 'LOGIN';
       },
       error: (err) => {
         this.toastrService.error(
-          'Erro ao cadastrar o usuário. Tente novamente.'
+          'Erro ao cadastrar o usuário. Tente novamente.',
         );
       },
     });

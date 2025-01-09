@@ -106,7 +106,7 @@ describe('BaseComponent', () => {
 
     expect(confirmationDialogService.confirm).toHaveBeenCalledWith(
       'Deletando registro',
-      'Deseja realmente deletar o registro?'
+      'Deseja realmente deletar o registro?',
     );
     expect(baseService.deleteById).toHaveBeenCalledWith(1);
     expect(component.findAll).toHaveBeenCalled();

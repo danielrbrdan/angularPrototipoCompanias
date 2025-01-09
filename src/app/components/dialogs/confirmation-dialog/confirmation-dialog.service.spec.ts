@@ -80,8 +80,8 @@ describe('ConfirmationDialogService', () => {
       result: Promise.reject('dismissed'),
     } as NgbModalRef);
 
-    await expectAsync(
-      service.confirm('Title', 'Message')
-    ).toBeRejectedWith('dismissed');
+    await expectAsync(service.confirm('Title', 'Message')).toBeRejectedWith(
+      'dismissed',
+    );
   });
 });

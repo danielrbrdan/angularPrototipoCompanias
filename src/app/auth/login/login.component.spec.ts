@@ -5,9 +5,7 @@ import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { ButtonComponent } from '../../components/button/button.component';
 import { InputComponent } from '../../components/input/input.component';
 import { CardComponent } from '../../components/card/card.component';
-import {
-  provideHttpClientTesting,
-} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 
