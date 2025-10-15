@@ -1,18 +1,12 @@
-FROM node:lts
-
-RUN mkdir -p /home/node/app && chown node:node /home/node/app
+FROM node:20
 
 WORKDIR /home/node/app
 
-RUN mkdir -p /home/node/app/node_modules && chown node:node /home/node/app/node_modules
-
-USER node
-
-COPY --chown=node:node package.json package-lock.json ./
+COPY --chown=node:node package*.json ./
 
 RUN npm ci --quiet
 
-RUN mkdir -p /home/node/app/.angular && chown node:node /home/node/app/.angular
+USER node
 
 EXPOSE 4200
 
